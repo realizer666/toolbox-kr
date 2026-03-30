@@ -28,6 +28,22 @@ export const categories: CategoryDefinition[] = [
     icon: "✏️",
     path: "/tools/text",
   },
+  {
+    id: "image",
+    name: "이미지 도구",
+    description:
+      "이미지 리사이즈, 포맷 변환, 압축 등 다양한 이미지 관련 도구",
+    icon: "🖼️",
+    path: "/tools/image",
+  },
+  {
+    id: "calculator",
+    name: "계산기",
+    description:
+      "대출 이자, 연봉 실수령액, BMI, 단위 변환 등 생활 계산기 모음",
+    icon: "🔢",
+    path: "/tools/calculator",
+  },
 ];
 
 export const tools: ToolDefinition[] = [
@@ -124,6 +140,99 @@ export const tools: ToolDefinition[] = [
     ],
     icon: "↩️",
     relatedToolIds: ["duplicate-line-remover", "text-converter"],
+  },
+  // 이미지 도구
+  {
+    id: "image-resizer",
+    categoryId: "image",
+    path: "/tools/image/image-resizer",
+    name: "이미지 리사이즈",
+    description: "이미지 크기를 원하는 사이즈로 조절합니다.",
+    longDescription:
+      "이미지 리사이즈 도구는 이미지의 가로, 세로 크기를 원하는 픽셀 또는 비율로 조절합니다. 블로그, SNS, 쇼핑몰 등에 맞는 이미지 크기로 쉽게 변환할 수 있습니다. 비율 유지 옵션을 제공하며, 모든 처리는 브라우저에서 이루어져 개인정보가 보호됩니다.",
+    keywords: ["이미지 리사이즈", "사진 크기 조절", "이미지 크기 변환", "사진 리사이즈"],
+    icon: "📐",
+    isNew: true,
+    relatedToolIds: ["image-compressor", "image-converter"],
+  },
+  {
+    id: "image-compressor",
+    categoryId: "image",
+    path: "/tools/image/image-compressor",
+    name: "이미지 압축",
+    description: "이미지 파일 용량을 줄여줍니다. 화질은 최대한 유지합니다.",
+    longDescription:
+      "이미지 압축 도구는 JPEG, PNG, WebP 이미지의 파일 크기를 줄여줍니다. 품질 조절 슬라이더를 통해 원하는 수준으로 압축할 수 있으며, 압축 전후 용량을 비교할 수 있습니다. 웹사이트 로딩 속도 개선, 이메일 첨부 용량 줄이기 등에 유용합니다.",
+    keywords: ["이미지 압축", "사진 용량 줄이기", "이미지 용량 줄이기", "사진 압축"],
+    icon: "🗜️",
+    isNew: true,
+    relatedToolIds: ["image-resizer", "image-converter"],
+  },
+  {
+    id: "image-converter",
+    categoryId: "image",
+    path: "/tools/image/image-converter",
+    name: "이미지 포맷 변환",
+    description: "PNG, JPG, WebP 등 이미지 포맷을 변환합니다.",
+    longDescription:
+      "이미지 포맷 변환 도구는 PNG, JPEG, WebP, BMP 등 다양한 이미지 형식 간 변환을 지원합니다. 특정 포맷이 필요한 경우 간편하게 변환할 수 있습니다. 모든 변환은 브라우저에서 처리되어 서버에 이미지가 업로드되지 않습니다.",
+    keywords: ["이미지 변환", "PNG JPG 변환", "이미지 포맷 변환", "사진 형식 변환", "WebP 변환"],
+    icon: "🔄",
+    isNew: true,
+    relatedToolIds: ["image-resizer", "image-compressor"],
+  },
+  // 계산기
+  {
+    id: "loan-calculator",
+    categoryId: "calculator",
+    path: "/tools/calculator/loan-calculator",
+    name: "대출 이자 계산기",
+    description: "대출 원리금 균등상환, 원금 균등상환 월 납입금을 계산합니다.",
+    longDescription:
+      "대출 이자 계산기는 대출 금액, 이자율, 대출 기간을 입력하면 월 납입금, 총 이자, 총 상환 금액을 계산합니다. 원리금 균등상환과 원금 균등상환 방식을 모두 지원하며, 상환 스케줄도 함께 확인할 수 있습니다.",
+    keywords: ["대출 이자 계산기", "대출 계산기", "월 납입금 계산", "주택담보대출 계산기", "이자 계산"],
+    icon: "🏦",
+    isNew: true,
+    relatedToolIds: ["salary-calculator", "bmi-calculator"],
+  },
+  {
+    id: "salary-calculator",
+    categoryId: "calculator",
+    path: "/tools/calculator/salary-calculator",
+    name: "연봉 실수령액 계산기",
+    description: "연봉에서 세금과 4대보험을 공제한 실수령액을 계산합니다.",
+    longDescription:
+      "연봉 실수령액 계산기는 연봉을 입력하면 소득세, 지방소득세, 국민연금, 건강보험, 장기요양보험, 고용보험 등을 공제한 월 실수령액을 계산합니다. 2026년 기준 세율과 보험료율을 적용하여 정확한 실수령액을 확인할 수 있습니다.",
+    keywords: ["연봉 실수령액", "연봉 계산기", "실수령액 계산기", "세후 연봉", "월급 계산기"],
+    icon: "💰",
+    isNew: true,
+    relatedToolIds: ["loan-calculator", "bmi-calculator"],
+  },
+  {
+    id: "bmi-calculator",
+    categoryId: "calculator",
+    path: "/tools/calculator/bmi-calculator",
+    name: "BMI 계산기",
+    description: "키와 체중으로 체질량지수(BMI)를 계산하고 비만도를 확인합니다.",
+    longDescription:
+      "BMI 계산기는 키(cm)와 체중(kg)을 입력하면 체질량지수(BMI)를 계산하고, 저체중/정상/과체중/비만 여부를 판정합니다. 대한비만학회 기준과 WHO 기준을 모두 제공하며, 건강한 체중 범위도 함께 안내합니다.",
+    keywords: ["BMI 계산기", "체질량지수", "비만도 계산", "BMI 측정", "체중 계산기"],
+    icon: "⚖️",
+    isNew: true,
+    relatedToolIds: ["salary-calculator", "loan-calculator"],
+  },
+  {
+    id: "unit-converter",
+    categoryId: "calculator",
+    path: "/tools/calculator/unit-converter",
+    name: "단위 변환기",
+    description: "길이, 무게, 온도, 면적 등 다양한 단위를 변환합니다.",
+    longDescription:
+      "단위 변환기는 길이(cm, m, km, inch, ft), 무게(g, kg, lb, oz), 온도(°C, °F, K), 면적(㎡, 평, 에이커), 부피(L, mL, 갤런) 등 다양한 단위 간 변환을 지원합니다. 일상생활과 업무에서 자주 필요한 단위 변환을 빠르게 처리할 수 있습니다.",
+    keywords: ["단위 변환", "단위 변환기", "cm inch 변환", "평 제곱미터", "온도 변환"],
+    icon: "📏",
+    isNew: true,
+    relatedToolIds: ["bmi-calculator", "loan-calculator"],
   },
 ];
 
