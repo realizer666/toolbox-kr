@@ -1,24 +1,33 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import QRCode from "qrcode";
 
 export function QrGeneratorTool() {
   const [text, setText] = useState("");
-  const [qrUrl, setQrUrl] = useState("");
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [generated, setGenerated] = useState(false);
 
   useEffect(() => {
-    if (!text.trim()) { setQrUrl(""); return; }
-    // Google Chart API로 QR코드 생성
-    const url = `https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=${encodeURIComponent(text)}&choe=UTF-8`;
-    setQrUrl(url);
+    if (!text.trim() || !canvasRef.current) {
+      setGenerated(false);
+      return;
+    }
+
+    QRCode.toCanvas(canvasRef.current, text, {
+      width: 280,
+      margin: 2,
+      color: { dark: "#000000", light: "#ffffff" },
+    })
+      .then(() => setGenerated(true))
+      .catch(() => setGenerated(false));
   }, [text]);
 
   function handleDownload() {
-    if (!qrUrl) return;
+    if (!canvasRef.current) return;
     const link = document.createElement("a");
     link.download = "qrcode.png";
-    link.href = qrUrl;
+    link.href = canvasRef.current.toDataURL("image/png");
     link.click();
   }
 
@@ -41,15 +50,13 @@ export function QrGeneratorTool() {
         </div>
 
         <div className="flex flex-col items-center">
-          {qrUrl ? (
-            <>
-              <div className="p-4 bg-white rounded-xl border border-border mb-4">
-                <img src={qrUrl} alt="QR코드" width={250} height={250} />
-              </div>
-              <button onClick={handleDownload} className="px-4 py-2 text-sm rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-colors">
-                이미지 다운로드
-              </button>
-            </>
+          <div className={`p-4 bg-white rounded-xl border border-border mb-4 ${!generated ? "hidden" : ""}`}>
+            <canvas ref={canvasRef} />
+          </div>
+          {generated ? (
+            <button onClick={handleDownload} className="px-4 py-2 text-sm rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-colors">
+              이미지 다운로드
+            </button>
           ) : (
             <div className="flex items-center justify-center h-full text-text-muted text-sm">
               내용을 입력하면 QR코드가 생성됩니다.
@@ -57,7 +64,6 @@ export function QrGeneratorTool() {
           )}
         </div>
       </div>
-      <canvas ref={canvasRef} className="hidden" />
     </div>
   );
 }
