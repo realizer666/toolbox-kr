@@ -356,6 +356,61 @@ export const tools: ToolDefinition[] = [
     isNew: true,
     relatedToolIds: ["qr-generator", "password-generator"],
   },
+  // 추가 텍스트 도구
+  {
+    id: "korean-english-typo",
+    categoryId: "text",
+    path: "/tools/text/korean-english-typo",
+    name: "한영 타자 변환기",
+    description: "한글 ↔ 영문 오타를 자동으로 변환합니다.",
+    longDescription:
+      "한영 타자 변환기는 한영 전환을 깜빡하고 입력한 텍스트를 올바르게 변환합니다. 예를 들어 'ㅗ디ㅣㅐ'를 'hello'로, 'dkssudgktpdy'를 '안녕하세요'로 변환합니다. 한글 자판과 영문 자판 배열을 기반으로 정확하게 변환합니다.",
+    keywords: ["한영 변환", "한영 타자 변환", "영한 변환", "한영키 오타", "타자 변환기"],
+    icon: "⌨️",
+    isNew: true,
+    relatedToolIds: ["character-counter", "text-converter"],
+  },
+  // 추가 계산기
+  {
+    id: "age-calculator",
+    categoryId: "calculator",
+    path: "/tools/calculator/age-calculator",
+    name: "나이 계산기",
+    description: "생년월일로 만 나이와 한국 나이를 계산합니다.",
+    longDescription:
+      "나이 계산기는 생년월일을 입력하면 만 나이, 한국 나이(세는나이), 연 나이를 모두 계산합니다. 2023년부터 한국도 만 나이를 공식 사용하지만, 일상에서는 여전히 한국 나이를 사용하는 경우가 많아 두 가지를 모두 확인할 수 있습니다.",
+    keywords: ["나이 계산기", "만나이 계산", "한국나이 계산", "나이 계산", "생년월일 나이"],
+    icon: "🎂",
+    isNew: true,
+    relatedToolIds: ["bmi-calculator", "d-day-calculator"],
+  },
+  {
+    id: "percent-calculator",
+    categoryId: "calculator",
+    path: "/tools/calculator/percent-calculator",
+    name: "퍼센트 계산기",
+    description: "할인율, 증감률, 비율 등 다양한 퍼센트 계산을 합니다.",
+    longDescription:
+      "퍼센트 계산기는 다양한 퍼센트 관련 계산을 지원합니다. A의 B%는 얼마인지, A에서 B로의 증감률, 할인 가격 계산, A가 B의 몇 %인지 등을 계산할 수 있습니다. 쇼핑 할인, 성적 계산, 사업 분석 등에 유용합니다.",
+    keywords: ["퍼센트 계산기", "할인율 계산", "증감률 계산", "비율 계산", "% 계산기"],
+    icon: "💹",
+    isNew: true,
+    relatedToolIds: ["loan-calculator", "salary-calculator"],
+  },
+  // 추가 개발자 도구
+  {
+    id: "regex-tester",
+    categoryId: "developer",
+    path: "/tools/developer/regex-tester",
+    name: "정규식 테스터",
+    description: "정규표현식을 실시간으로 테스트하고 매칭 결과를 확인합니다.",
+    longDescription:
+      "정규식 테스터는 정규표현식 패턴을 입력하면 테스트 문자열에서 매칭되는 부분을 실시간으로 하이라이트합니다. g, i, m 등의 플래그를 설정할 수 있으며, 매칭된 그룹 정보도 함께 표시합니다. 정규식을 학습하거나 디버깅할 때 유용합니다.",
+    keywords: ["정규식 테스터", "정규표현식 테스트", "regex 테스터", "정규식 검사", "regex tester"],
+    icon: "🔍",
+    isNew: true,
+    relatedToolIds: ["json-formatter", "url-encoder"],
+  },
 ];
 
 export function getToolsByCategory(categoryId: string): ToolDefinition[] {
