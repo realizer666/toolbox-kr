@@ -44,6 +44,22 @@ export const categories: CategoryDefinition[] = [
     icon: "🔢",
     path: "/tools/calculator",
   },
+  {
+    id: "developer",
+    name: "개발자 도구",
+    description:
+      "JSON 포맷터, Base64 변환, 색상 추출 등 개발에 유용한 도구 모음",
+    icon: "💻",
+    path: "/tools/developer",
+  },
+  {
+    id: "generator",
+    name: "생성 도구",
+    description:
+      "QR코드, 비밀번호, 로렘입숨 등 다양한 생성 도구 모음",
+    icon: "⚡",
+    path: "/tools/generator",
+  },
 ];
 
 export const tools: ToolDefinition[] = [
@@ -233,6 +249,112 @@ export const tools: ToolDefinition[] = [
     icon: "📏",
     isNew: true,
     relatedToolIds: ["bmi-calculator", "loan-calculator"],
+  },
+  // 개발자 도구
+  {
+    id: "json-formatter",
+    categoryId: "developer",
+    path: "/tools/developer/json-formatter",
+    name: "JSON 포맷터",
+    description: "JSON 데이터를 보기 좋게 정렬하고 검증합니다.",
+    longDescription:
+      "JSON 포맷터는 압축된 JSON 데이터를 들여쓰기하여 보기 좋게 정리하거나, 반대로 압축(minify)할 수 있습니다. JSON 문법 오류도 자동으로 검출하여 알려줍니다. API 개발, 데이터 분석 등에서 JSON을 다룰 때 유용합니다.",
+    keywords: ["JSON 포맷터", "JSON 정렬", "JSON 뷰어", "JSON 검증", "JSON beautify"],
+    icon: "{ }",
+    isNew: true,
+    relatedToolIds: ["base64-converter", "color-picker"],
+  },
+  {
+    id: "base64-converter",
+    categoryId: "developer",
+    path: "/tools/developer/base64-converter",
+    name: "Base64 인코더/디코더",
+    description: "텍스트를 Base64로 인코딩하거나 디코딩합니다.",
+    longDescription:
+      "Base64 인코더/디코더는 일반 텍스트를 Base64 형식으로 변환하거나, Base64로 인코딩된 문자열을 원래 텍스트로 복원합니다. API 통신, 이메일 인코딩, 데이터 전송 등에서 자주 사용되는 Base64 변환을 간편하게 처리할 수 있습니다.",
+    keywords: ["Base64 변환", "Base64 인코딩", "Base64 디코딩", "Base64 인코더"],
+    icon: "🔐",
+    isNew: true,
+    relatedToolIds: ["json-formatter", "color-picker"],
+  },
+  {
+    id: "color-picker",
+    categoryId: "developer",
+    path: "/tools/developer/color-picker",
+    name: "색상 변환기",
+    description: "HEX, RGB, HSL 색상 코드를 상호 변환합니다.",
+    longDescription:
+      "색상 변환기는 HEX, RGB, HSL 등 다양한 색상 코드 형식을 상호 변환합니다. 웹 디자인, 앱 개발 등에서 색상 코드가 필요할 때 유용합니다. 색상 미리보기도 함께 제공합니다.",
+    keywords: ["색상 변환", "HEX RGB 변환", "색상 코드", "컬러 피커", "색상 추출"],
+    icon: "🎨",
+    isNew: true,
+    relatedToolIds: ["json-formatter", "base64-converter"],
+  },
+  {
+    id: "url-encoder",
+    categoryId: "developer",
+    path: "/tools/developer/url-encoder",
+    name: "URL 인코더/디코더",
+    description: "URL 특수문자를 인코딩하거나 디코딩합니다.",
+    longDescription:
+      "URL 인코더/디코더는 URL에 포함된 특수문자, 한글 등을 퍼센트 인코딩으로 변환하거나, 인코딩된 URL을 원래 형태로 복원합니다. 웹 개발, API 호출, 링크 공유 등에서 URL을 다룰 때 유용합니다.",
+    keywords: ["URL 인코딩", "URL 디코딩", "URL 인코더", "퍼센트 인코딩", "URL 변환"],
+    icon: "🔗",
+    isNew: true,
+    relatedToolIds: ["base64-converter", "json-formatter"],
+  },
+  // 생성 도구
+  {
+    id: "qr-generator",
+    categoryId: "generator",
+    path: "/tools/generator/qr-generator",
+    name: "QR코드 생성기",
+    description: "URL, 텍스트 등으로 QR코드를 생성합니다.",
+    longDescription:
+      "QR코드 생성기는 URL, 텍스트, 연락처 정보 등을 QR코드로 변환합니다. 생성된 QR코드는 PNG 이미지로 다운로드할 수 있습니다. 명함, 포스터, 웹사이트 등에 활용할 수 있습니다.",
+    keywords: ["QR코드 생성", "QR코드 만들기", "QR코드 생성기", "QR코드 변환"],
+    icon: "📱",
+    isNew: true,
+    relatedToolIds: ["password-generator", "lorem-generator"],
+  },
+  {
+    id: "password-generator",
+    categoryId: "generator",
+    path: "/tools/generator/password-generator",
+    name: "비밀번호 생성기",
+    description: "안전한 랜덤 비밀번호를 생성합니다.",
+    longDescription:
+      "비밀번호 생성기는 영문 대소문자, 숫자, 특수문자를 조합한 안전한 랜덤 비밀번호를 생성합니다. 길이와 포함할 문자 종류를 설정할 수 있으며, 비밀번호 강도도 함께 표시합니다. 생성된 비밀번호는 서버에 저장되지 않습니다.",
+    keywords: ["비밀번호 생성기", "랜덤 비밀번호", "비밀번호 만들기", "안전한 비밀번호"],
+    icon: "🔑",
+    isNew: true,
+    relatedToolIds: ["qr-generator", "lorem-generator"],
+  },
+  {
+    id: "lorem-generator",
+    categoryId: "generator",
+    path: "/tools/generator/lorem-generator",
+    name: "한글 로렘입숨",
+    description: "디자인/개발용 한글 더미 텍스트를 생성합니다.",
+    longDescription:
+      "한글 로렘입숨 생성기는 웹 디자인, 앱 개발, 인쇄물 제작 등에서 레이아웃 확인용으로 사용할 수 있는 한글 더미 텍스트를 생성합니다. 문단 수를 지정할 수 있으며, 자연스러운 한국어 문장으로 구성됩니다.",
+    keywords: ["로렘입숨", "한글 로렘입숨", "더미 텍스트", "Lorem Ipsum 한글", "임시 텍스트"],
+    icon: "📝",
+    isNew: true,
+    relatedToolIds: ["qr-generator", "password-generator"],
+  },
+  {
+    id: "d-day-calculator",
+    categoryId: "generator",
+    path: "/tools/generator/d-day-calculator",
+    name: "D-Day 계산기",
+    description: "특정 날짜까지 남은 일수 또는 경과 일수를 계산합니다.",
+    longDescription:
+      "D-Day 계산기는 특정 날짜까지 남은 일수를 계산하거나, 특정 날짜로부터 경과한 일수를 확인할 수 있습니다. 시험일, 기념일, 프로젝트 마감일 등 다양한 상황에서 활용할 수 있습니다.",
+    keywords: ["D-Day 계산기", "디데이 계산", "남은 날짜 계산", "날짜 계산기", "경과일 계산"],
+    icon: "📅",
+    isNew: true,
+    relatedToolIds: ["qr-generator", "password-generator"],
   },
 ];
 
