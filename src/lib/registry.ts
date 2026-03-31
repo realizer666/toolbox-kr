@@ -622,6 +622,20 @@ export const tools: ToolDefinition[] = [
     isNew: true,
     relatedToolIds: ["calorie-calculator", "bmi-calculator"],
   },
+  // 생활 도구 - 주소
+  {
+    id: "address-converter",
+    categoryId: "generator",
+    path: "/tools/generator/address-converter",
+    name: "영문주소 변환기",
+    description: "한글 주소를 영문 주소로 변환하고 우편번호를 확인합니다.",
+    longDescription:
+      "영문주소 변환기는 한글 도로명주소 또는 지번주소를 검색하면 영문 주소와 우편번호를 함께 확인할 수 있습니다. 해외 직구, 해외 배송, 영문 서류 작성 등에서 영문 주소가 필요할 때 유용합니다. 도로명주소 데이터를 기반으로 정확한 영문 주소를 제공합니다.",
+    keywords: ["영문주소 변환", "영어주소 변환기", "영문주소 검색", "우편번호 검색", "영문주소"],
+    icon: "📮",
+    isNew: true,
+    relatedToolIds: ["ip-lookup", "qr-generator"],
+  },
 ];
 
 export function getToolsByCategory(categoryId: string): ToolDefinition[] {
