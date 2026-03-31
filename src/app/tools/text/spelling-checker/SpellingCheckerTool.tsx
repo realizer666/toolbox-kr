@@ -9,6 +9,18 @@ interface Correction {
   reason: string;
 }
 
+function getCategoryLabel(category: string): string {
+  const labels: Record<string, string> = {
+    TYPO: "오타 교정: 유사한 단어를 추천합니다",
+    SPACING: "띄어쓰기 교정",
+    SPELLING: "맞춤법 교정",
+    GRAMMAR: "문법 교정",
+    STYLE: "문체 교정",
+    PUNCTUATION: "문장부호 교정",
+  };
+  return labels[category] || "맞춤법 교정";
+}
+
 export function SpellingCheckerTool() {
   const [input, setInput] = useState("");
   const [corrections, setCorrections] = useState<Correction[]>([]);
@@ -38,40 +50,32 @@ export function SpellingCheckerTool() {
         return;
       }
 
-      // 바른 AI 응답 파싱
+      // 바른 AI 응답 파싱 (revisedBlocks 구조)
       const found: Correction[] = [];
-      let fixed = input;
+      const helps = data.helps || {};
 
-      if (data.revision?.sentences) {
-        for (const sentence of data.revision.sentences) {
-          if (sentence.corrections) {
-            for (const corr of sentence.corrections) {
-              const original = corr.original?.content || corr.original || "";
-              const revised = corr.revised?.content || corr.revised || "";
-              const reason = corr.reason || corr.help_message || corr.description || "맞춤법 교정";
-
-              if (original && revised && original !== revised) {
-                found.push({ original, revised, reason });
-                fixed = fixed.replace(original, revised);
-              }
-            }
-          }
-        }
-      }
-
-      // 다른 응답 구조도 처리
-      if (data.corrections) {
-        for (const corr of data.corrections) {
-          const original = corr.original?.content || corr.original || "";
-          const revised = corr.revised?.content || corr.revised || "";
-          const reason = corr.reason || corr.help_message || "맞춤법 교정";
+      if (data.revisedBlocks) {
+        for (const block of data.revisedBlocks) {
+          const original = block.origin?.content || "";
+          const revised = block.revised || "";
 
           if (original && revised && original !== revised) {
+            // 첫 번째 revision의 카테고리와 도움말 가져오기
+            const firstRevision = block.revisions?.[0];
+            const category = firstRevision?.category || "";
+            const helpId = firstRevision?.helpId || "";
+            const helpInfo = helps[helpId];
+            const reason = helpInfo?.comment || getCategoryLabel(category);
+
             found.push({ original, revised, reason });
-            fixed = fixed.replace(original, revised);
           }
         }
       }
+
+      // 교정된 전체 텍스트
+      const fixed = data.revisedSentences
+        ? data.revisedSentences.map((s: { revised: string }) => s.revised).join(" ")
+        : input;
 
       setCorrections(found);
       setCorrectedText(fixed);
