@@ -2,6 +2,7 @@ import Link from "next/link";
 import { categories, getToolsByCategory, getAllTools } from "@/lib/registry";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { SearchBar } from "@/components/tools/SearchBar";
 
 export default function HomePage() {
   const totalTools = getAllTools().length;
@@ -18,9 +19,11 @@ export default function HomePage() {
           <br className="hidden sm:block" />
           누구나 무료로 사용할 수 있는 온라인 도구 모음
         </p>
-        <div className="inline-block px-4 py-2 bg-primary-50 text-primary-600 rounded-full text-sm font-medium">
+        <div className="inline-block px-4 py-2 bg-primary-50 text-primary-600 rounded-full text-sm font-medium mb-8">
           총 {totalTools}개 무료 도구
         </div>
+
+        <SearchBar />
       </section>
 
       {/* 카테고리 바로가기 */}

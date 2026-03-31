@@ -595,6 +595,33 @@ export const tools: ToolDefinition[] = [
     isNew: true,
     relatedToolIds: ["uuid-generator", "hash-generator"],
   },
+  // 칼로리/열량 계산기
+  {
+    id: "calorie-calculator",
+    categoryId: "calculator",
+    path: "/tools/calculator/calorie-calculator",
+    name: "칼로리 계산기",
+    description: "하루 필요 칼로리와 목표별 권장 섭취량을 계산합니다.",
+    longDescription:
+      "칼로리 계산기는 성별, 나이, 키, 체중, 활동량을 입력하면 기초대사량(BMR)과 하루 필요 칼로리(TDEE)를 계산합니다. 체중 감량, 유지, 증량 등 목표에 따른 권장 칼로리 섭취량도 함께 제공합니다. Mifflin-St Jeor 공식을 사용합니다.",
+    keywords: ["칼로리 계산기", "하루 칼로리", "기초대사량 계산", "TDEE 계산", "다이어트 칼로리"],
+    icon: "🔥",
+    isNew: true,
+    relatedToolIds: ["bmi-calculator", "percent-calculator"],
+  },
+  {
+    id: "food-calorie",
+    categoryId: "calculator",
+    path: "/tools/calculator/food-calorie",
+    name: "음식 열량 계산기",
+    description: "음식별 칼로리를 검색하고 하루 섭취량을 계산합니다.",
+    longDescription:
+      "음식 열량 계산기는 한국인이 자주 먹는 음식의 칼로리를 검색할 수 있습니다. 여러 음식을 추가하여 한 끼 또는 하루 총 섭취 칼로리를 계산할 수 있습니다. 다이어트, 식단 관리에 유용합니다.",
+    keywords: ["음식 칼로리", "열량 계산기", "음식 열량", "칼로리 검색", "식단 칼로리"],
+    icon: "🍽️",
+    isNew: true,
+    relatedToolIds: ["calorie-calculator", "bmi-calculator"],
+  },
 ];
 
 export function getToolsByCategory(categoryId: string): ToolDefinition[] {
