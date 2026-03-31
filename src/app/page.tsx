@@ -3,12 +3,58 @@ import { categories, getToolsByCategory, getAllTools } from "@/lib/registry";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { SearchBar } from "@/components/tools/SearchBar";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export default function HomePage() {
   const totalTools = getAllTools().length;
 
   return (
     <div className="mx-auto max-w-6xl px-4">
+      {/* Google 구조화 데이터 - WebSite + SearchAction */}
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "모두의도구",
+        "url": "https://toolbox-kr.vercel.app",
+        "description": `글자수 세기, 맞춤법 검사, 이미지 압축 등 ${totalTools}개 무료 온라인 도구`,
+        "inLanguage": "ko",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://toolbox-kr.vercel.app/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }} />
+      {/* FAQ 구조화 데이터 - 리치 스니펫 */}
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "모두의도구는 무료인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "네, 모두의도구의 모든 도구는 완전 무료입니다. 회원가입도 필요 없이 바로 사용할 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "모두의도구에는 어떤 도구가 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "글자수 세기, 맞춤법 검사기, 이미지 압축, 이미지 리사이즈, 대출 이자 계산기, 연봉 실수령액 계산기, QR코드 생성기, 비밀번호 생성기, JSON 포맷터 등 43개 이상의 무료 도구를 제공합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "개인정보가 안전한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "모든 도구는 브라우저에서 직접 처리되며, 입력한 데이터는 서버로 전송되지 않습니다. 개인정보를 수집하지 않습니다."
+            }
+          }
+        ]
+      }} />
       {/* Hero */}
       <section className="py-16 text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-text mb-4">
