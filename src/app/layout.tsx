@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     google: "JsAUs5ISSvZUa20IaJIgZ9s7sZUc144KDGV5QjbISGM",
     other: {
       "naver-site-verification": ["d9c004f24c2d78e9a530da6672f023d878ecd631"],
+      "google-adsense-account": ["ca-pub-5056296408239025"],
     },
   },
 };
