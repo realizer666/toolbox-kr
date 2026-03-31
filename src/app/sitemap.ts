@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { tools, categories } from "@/lib/registry";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://modudogu.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://toolbox-kr.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const toolPages = tools.map((tool) => ({

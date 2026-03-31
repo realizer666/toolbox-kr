@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ToolDefinition } from "./registry";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://modudogu.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://toolbox-kr.vercel.app";
 const SITE_NAME = "모두의도구";
 
 export function generateToolMetadata(tool: ToolDefinition): Metadata {
